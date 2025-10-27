@@ -1,20 +1,24 @@
 import { MobileMenu } from '@/components'
 import { MAIN_MENU } from '@/data/menu'
 import { useCartCount, useCartHydrated } from '@/store/cart'
+import { smoothScrollToId } from '@/utils/scroll'
 import MenuIcon from '@mui/icons-material/Menu'
 import PhoneIcon from '@mui/icons-material/Phone'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { AppBar, Box, Container, IconButton, Link, Stack, Toolbar, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 
 const BRAND_TEXT = '#2E3D2F'
+const HEADER_OFFSET = 72
 
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [overlay, setOverlay] = useState(0)
   const hydrated = useCartHydrated()
   const count = useCartCount()
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
 
   useEffect(() => {
     let raf: number | null = null
@@ -60,19 +64,16 @@ export default function Header() {
         }}
       >
         <Container maxWidth="lg" disableGutters>
-          <Toolbar sx={{ minHeight: 64, px: 2, color: BRAND_TEXT, position: 'relative' }}>
+          <Toolbar
+            sx={{ minHeight: HEADER_OFFSET, px: 2, color: BRAND_TEXT, position: 'relative' }}
+          >
             <Link
               href="/"
               underline="none"
               color="inherit"
               sx={{ display: 'inline-flex', alignItems: 'center', gap: 1.2 }}
             >
-              <Box
-                component="img"
-                src="/logo.svg"
-                alt="LuxeRoe"
-                sx={{ width: 28, height: 28, display: 'block' }}
-              />
+              <Box component="img" src="/logo.svg" alt="LuxeRoe" sx={{ width: 28, height: 28 }} />
               <Typography variant="h6" fontWeight={900} color="inherit">
                 LuxeRoe
               </Typography>
@@ -89,17 +90,31 @@ export default function Header() {
                 '& a:hover': { opacity: 0.85 }
               }}
             >
-              {MAIN_MENU.map(it => (
-                <Link key={it.href} href={it.href} color="inherit">
-                  {it.label}
-                </Link>
-              ))}
+              {MAIN_MENU.map(it => {
+                const hash = it.href.includes('#') ? it.href.split('#')[1] : ''
+                return (
+                  <Link
+                    key={it.href}
+                    href={it.href}
+                    color="inherit"
+                    onClick={e => {
+                      if (isHome && hash) {
+                        e.preventDefault()
+                        smoothScrollToId(hash, HEADER_OFFSET)
+                      }
+                    }}
+                  >
+                    {it.label}
+                  </Link>
+                )
+              })}
             </Stack>
 
             <Stack direction="row" spacing={0.5} alignItems="center" sx={{ ml: 'auto' }}>
               <IconButton component="a" href="tel:+380939858552" aria-label="call" color="inherit">
                 <PhoneIcon sx={{ color: '#C6744B' }} />
               </IconButton>
+
               <IconButton aria-label="cart" color="inherit" component={RouterLink} to="/cart">
                 <Box sx={{ position: 'relative' }}>
                   <ShoppingCartIcon />
@@ -126,6 +141,7 @@ export default function Header() {
                   )}
                 </Box>
               </IconButton>
+
               <Box sx={{ display: { xs: 'inline-flex', md: 'none' } }}>
                 <IconButton onClick={() => setOpen(true)} aria-label="menu" color="inherit">
                   <MenuIcon />

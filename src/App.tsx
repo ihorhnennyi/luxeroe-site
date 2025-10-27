@@ -11,26 +11,17 @@ import {
   Shipping,
   TopTicker
 } from '@/components'
+import SmoothHashScroll from '@/components/_internals/SmoothHashScroll'
 import CartPage from '@/pages/cart'
 import { useCartCount } from '@/store/cart'
 import { Box } from '@mui/material'
-import { useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
+
+const HEADER_OFFSET = 72
 
 function Home() {
   const count = useCartCount()
   const navigate = useNavigate()
-
-  // 🔽 Добавим плавную прокрутку к якорям (когда открывается /#id)
-  useEffect(() => {
-    const hash = window.location.hash
-    if (hash) {
-      const el = document.querySelector(hash)
-      if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200)
-      }
-    }
-  }, [])
 
   return (
     <Box
@@ -44,7 +35,6 @@ function Home() {
       <TopTicker />
       <Header />
 
-      {/* 🔽 Разделы с id для якорей */}
       <Box id="deals">
         <PromoHero />
       </Box>
@@ -57,17 +47,17 @@ function Home() {
         <Reviews />
       </Box>
 
+      <Box>
+        <Instagram />
+        <Consultation />
+      </Box>
+
       <Box id="how-to-order">
         <HowTo />
       </Box>
 
       <Box id="delivery">
         <Shipping />
-      </Box>
-
-      <Box>
-        <Instagram />
-        <Consultation />
       </Box>
 
       <Footer />
@@ -84,9 +74,13 @@ function Home() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/cart" element={<CartPage />} />
-    </Routes>
+    <>
+      {/* Плавный скролл для переходов по /#hash (учёт высоты шапки) */}
+      <SmoothHashScroll offset={HEADER_OFFSET} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+    </>
   )
 }

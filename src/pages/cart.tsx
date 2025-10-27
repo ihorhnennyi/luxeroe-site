@@ -1,21 +1,10 @@
 import { CartEmpty, CartHeader, CheckoutForm, Footer, Header, TopTicker } from '@/components'
 import { useCartCount, useCartHydrated } from '@/store/cart'
 import { Box, Container } from '@mui/material'
-import { useEffect } from 'react'
 
 export default function CartPage() {
   const hydrated = useCartHydrated()
   const count = useCartCount()
-
-  useEffect(() => {
-    const hash = window.location.hash
-    if (hash) {
-      const el = document.querySelector(hash)
-      if (el) {
-        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300)
-      }
-    }
-  }, [])
 
   return (
     <Box
