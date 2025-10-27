@@ -14,11 +14,23 @@ import {
 import CartPage from '@/pages/cart'
 import { useCartCount } from '@/store/cart'
 import { Box } from '@mui/material'
+import { useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 function Home() {
   const count = useCartCount()
   const navigate = useNavigate()
+
+  // 🔽 Добавим плавную прокрутку к якорям (когда открывается /#id)
+  useEffect(() => {
+    const hash = window.location.hash
+    if (hash) {
+      const el = document.querySelector(hash)
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 200)
+      }
+    }
+  }, [])
 
   return (
     <Box
@@ -31,13 +43,33 @@ function Home() {
     >
       <TopTicker />
       <Header />
-      <PromoHero />
-      <Product />
-      <Instagram />
-      <Consultation />
-      <Reviews />
-      <HowTo />
-      <Shipping />
+
+      {/* 🔽 Разделы с id для якорей */}
+      <Box id="deals">
+        <PromoHero />
+      </Box>
+
+      <Box id="catalog">
+        <Product />
+      </Box>
+
+      <Box id="reviews">
+        <Reviews />
+      </Box>
+
+      <Box id="how-to-order">
+        <HowTo />
+      </Box>
+
+      <Box id="delivery">
+        <Shipping />
+      </Box>
+
+      <Box>
+        <Instagram />
+        <Consultation />
+      </Box>
+
       <Footer />
 
       <FloatingActions
