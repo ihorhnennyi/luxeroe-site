@@ -16,6 +16,7 @@ import {
   ListItemButton,
   ListItemText,
   Stack,
+  SvgIcon,
   Typography
 } from '@mui/material'
 
@@ -23,6 +24,15 @@ type Props = { open: boolean; onClose: () => void }
 
 const BRAND_TEXT = '#2E3D2F'
 const ACCENT_GREEN = '#0F6A3C'
+
+// Оригинальный логотип TikTok (моно, под цвет текущего текста)
+function TikTokIcon(props: React.ComponentProps<typeof SvgIcon>) {
+  return (
+    <SvgIcon {...props} viewBox="0 0 24 24">
+      <path d="M12.75 3a5.25 5.25 0 0 0 5.25 5.25V11a8.25 8.25 0 1 1-8.25-8.25h3v3h-3a5.25 5.25 0 1 0 5.25 5.25V3Z" />
+    </SvgIcon>
+  )
+}
 
 export default function MobileMenu({ open, onClose }: Props) {
   const iconFor = (k: string) => {
@@ -33,6 +43,8 @@ export default function MobileMenu({ open, onClose }: Props) {
         return <FacebookIcon sx={{ color: BRAND_TEXT }} />
       case 'telegram':
         return <TelegramIcon sx={{ color: BRAND_TEXT }} />
+      case 'tiktok':
+        return <TikTokIcon sx={{ color: BRAND_TEXT, fontSize: 24 }} />
       default:
         return null
     }
@@ -48,10 +60,8 @@ export default function MobileMenu({ open, onClose }: Props) {
         sx: {
           width: '100%',
           maxWidth: '100%',
-          // 🔑 на весь экран мобильного вьюпорта
           height: '100dvh',
           minHeight: '100vh',
-          // колонка и управление прокруткой
           display: 'flex',
           flexDirection: 'column',
           overflow: 'hidden',
@@ -156,7 +166,7 @@ export default function MobileMenu({ open, onClose }: Props) {
               component={Link}
               href={s.href}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               aria-label={s.label}
               sx={{ color: BRAND_TEXT, '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' } }}
             >

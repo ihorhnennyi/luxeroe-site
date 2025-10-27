@@ -1,13 +1,17 @@
 import { SOCIALS } from '@/data/socials'
 import { Box, Container, IconButton, Stack, Typography } from '@mui/material'
-import { Facebook, Instagram, Send } from 'lucide-react'
+import { Facebook, Instagram, Music2, Send } from 'lucide-react'
 
 const BRAND = '#2E3D2F'
 
-function SocialIcon({ icon }: { icon: 'instagram' | 'facebook' | 'telegram' }) {
-  if (icon === 'facebook') return <Facebook size={18} strokeWidth={2.2} />
-  if (icon === 'telegram') return <Send size={18} strokeWidth={2.2} />
-  return <Instagram size={18} strokeWidth={2.2} />
+function SocialIcon({ icon }: { icon: 'instagram' | 'facebook' | 'telegram' | 'tiktok' }) {
+  const size = 18
+  const stroke = 2.2
+
+  if (icon === 'facebook') return <Facebook size={size} strokeWidth={stroke} />
+  if (icon === 'telegram') return <Send size={size} strokeWidth={stroke} />
+  if (icon === 'tiktok') return <Music2 size={size} strokeWidth={stroke} />
+  return <Instagram size={size} strokeWidth={stroke} />
 }
 
 export default function Footer() {
