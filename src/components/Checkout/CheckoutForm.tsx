@@ -19,7 +19,6 @@ import type { FormData } from './types'
 
 const API_BASE = import.meta.env.VITE_API_BASE || ''
 
-// Нормализация телефона: оставляем цифры и добавляем '+'
 const normalizePhone = (v: string) => {
   const digits = (v || '').replace(/[^\d]/g, '')
   return digits ? `+${digits}` : ''
@@ -39,7 +38,6 @@ export default function CheckoutForm() {
     getValues
   } = useForm<FormData>({
     mode: 'onChange',
-    // Важно для корректного isValid на мобилках
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -50,6 +48,7 @@ export default function CheckoutForm() {
     }
   })
 
+  const formRef = useRef<HTMLFormElement>(null)
   const hpRef = useRef<HTMLInputElement>(null)
 
   const total = useMemo(
@@ -67,11 +66,21 @@ export default function CheckoutForm() {
     return () => clearTimeout(t)
   }, [success, navigate, clear])
 
+  const blurAllInputs = () => {
+    // Скрыть клавиатуру на мобилках
+    try {
+      ;(document.activeElement as HTMLElement | null)?.blur?.()
+      formRef.current
+        ?.querySelectorAll<HTMLElement>('input, textarea, select, [contenteditable="true"]')
+        .forEach(el => el.blur())
+    } catch {}
+  }
+
   const onSubmit = async () => {
     setError(null)
+    blurAllInputs()
 
     const data = getValues()
-    // Мини-валидация на уровне submit (подстраховка)
     if (!data.firstName || !data.lastName || !data.phone || !data.city || !data.address) {
       setError('Будь ласка, заповніть усі обовʼязкові поля.')
       return
@@ -97,7 +106,7 @@ export default function CheckoutForm() {
       })),
       total,
       sourceUrl: typeof window !== 'undefined' ? `${window.location.origin}/cart` : undefined,
-      company: hpRef.current?.value || '' // honeypot
+      company: hpRef.current?.value || ''
     }
 
     try {
@@ -106,14 +115,9 @@ export default function CheckoutForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
-
-      if (!res.ok) {
-        throw new Error(`HTTP ${res.status}`)
-      }
-
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const json = await res.json().catch(() => ({}))
       if (json?.ok === false) throw new Error(json?.error || 'Помилка сервера')
-
       setSuccess(true)
     } catch (e: any) {
       console.error(e)
@@ -128,17 +132,22 @@ export default function CheckoutForm() {
       <Box
         id="checkout"
         component="form"
+        ref={formRef}
         onSubmit={handleSubmit(onSubmit)}
         noValidate
+        aria-busy={isSubmitting}
         sx={{
           mt: 2,
           borderRadius: 4,
           border: `1px solid ${GOLD_BORDER}`,
           background: 'linear-gradient(180deg,#FFFFFF 0%,#FBF6F0 100%)',
-          p: { xs: 2, md: 3 }
+          p: { xs: 2, md: 3 },
+          // пока отправляем — блокируем клики по форме, чтобы не было дабл-сабмита
+          pointerEvents: isSubmitting ? 'none' : 'auto'
+          // но кнопку сабмита мы всё равно нажали — для этого обернули логику в ActionsBar
         }}
       >
-        {/* Honeypot (скрытое поле) */}
+        {/* Honeypot */}
         <input
           ref={hpRef}
           name="company"
@@ -148,7 +157,7 @@ export default function CheckoutForm() {
           aria-hidden
         />
 
-        <Stack spacing={2}>
+        <Stack spacing={2} sx={{ opacity: isSubmitting ? 0.85 : 1 }}>
           <OrderSummary total={total} />
           <PaymentNotice />
 
@@ -162,7 +171,7 @@ export default function CheckoutForm() {
             </Typography>
           )}
 
-          <ActionsBar disabled={!isValid || isSubmitting} />
+          <ActionsBar disabled={!isValid || isSubmitting} loading={isSubmitting} />
         </Stack>
       </Box>
     </ThemeProvider>
