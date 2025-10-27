@@ -22,43 +22,6 @@ export const products: Product[] = [
   },
   {
     id: '2',
-    slug: 'ikra-schuki',
-    title: 'Ікра щуки',
-    category: 'special',
-    image: '/ikra/shuka.webp',
-    short: 'Делікатний смак, бурштиновий колір.',
-    highlights: ['2–3 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
-    badge: 'sale',
-    specs: {
-      consistency: 'Суха, не більше 6% рідини',
-      size: '2–3 мм в діаметрі',
-      color: 'Світлий бурштин',
-      container: 'Скляна банка',
-      storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
-  },
-  {
-    id: '3',
-    slug: 'ikra-goltsya',
-    title: 'Ікра гольця',
-    category: 'red',
-    image: '/ikra/golets.webp',
-    short: 'Ніжна, світло-жовтогаряча.',
-    highlights: ['≈3 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
-    specs: {
-      consistency: 'Суха, не більше 6% рідини',
-      size: '≈3 мм',
-      color: 'Світло-жовтогарячий',
-      container: 'Скляна банка',
-      storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
-  },
-  {
-    id: '4',
     slug: 'ikra-keti',
     title: 'Ікра кети',
     category: 'red',
@@ -76,7 +39,7 @@ export const products: Product[] = [
     }
   },
   {
-    id: '5',
+    id: '3',
     slug: 'ikra-lososya',
     title: 'Ікра лосося',
     category: 'red',
@@ -94,7 +57,7 @@ export const products: Product[] = [
     }
   },
   {
-    id: '6',
+    id: '4',
     slug: 'ikra-keti-premium',
     title: 'Ікра кети Premium',
     category: 'red',
@@ -113,7 +76,7 @@ export const products: Product[] = [
     }
   },
   {
-    id: '7',
+    id: '5',
     slug: 'ikra-veslonosa',
     title: 'Ікра веслоноса (чорна)',
     category: 'black',
@@ -125,6 +88,43 @@ export const products: Product[] = [
       consistency: 'Суха, не більше 6% рідини',
       size: '≈2.2 мм',
       color: 'Чорний',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '6',
+    slug: 'ikra-schuki',
+    title: 'Ікра щуки',
+    category: 'special',
+    image: '/ikra/shuka.webp',
+    short: 'Делікатний смак, бурштиновий колір.',
+    highlights: ['2–3 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    badge: 'sale',
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '2–3 мм в діаметрі',
+      color: 'Світлий бурштин',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '7',
+    slug: 'ikra-goltsya',
+    title: 'Ікра гольця',
+    category: 'red',
+    image: '/ikra/golets.webp',
+    short: 'Ніжна, світло-жовтогаряча.',
+    highlights: ['≈3 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '≈3 мм',
+      color: 'Світло-жовтогарячий',
       container: 'Скляна банка',
       storage: 'до +5',
       shelfLife: '4 місяці • 2 тижні після відкриття'
