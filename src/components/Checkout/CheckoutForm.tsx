@@ -1,3 +1,4 @@
+// src/components/Checkout/CheckoutForm.tsx
 import { useCart } from '@/store/cart'
 import { normalizePrice } from '@/utils/money'
 import { Box, Stack, ThemeProvider, Typography } from '@mui/material'
@@ -18,6 +19,12 @@ import type { FormData } from './types'
 
 const API_BASE = import.meta.env.VITE_API_BASE || ''
 
+// Нормализация телефона: оставляем цифры и добавляем '+'
+const normalizePhone = (v: string) => {
+  const digits = (v || '').replace(/[^\d]/g, '')
+  return digits ? `+${digits}` : ''
+}
+
 export default function CheckoutForm() {
   const { items, clear } = useCart()
   const navigate = useNavigate()
@@ -30,7 +37,18 @@ export default function CheckoutForm() {
     control,
     formState: { isSubmitting, isValid },
     getValues
-  } = useForm<FormData>({ mode: 'onChange' })
+  } = useForm<FormData>({
+    mode: 'onChange',
+    // Важно для корректного isValid на мобилках
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      city: '',
+      address: '',
+      note: ''
+    }
+  })
 
   const hpRef = useRef<HTMLInputElement>(null)
 
@@ -44,7 +62,6 @@ export default function CheckoutForm() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
     const t = setTimeout(() => {
       navigate('/')
-
       setTimeout(() => clear(), 0)
     }, 10000)
     return () => clearTimeout(t)
@@ -54,6 +71,7 @@ export default function CheckoutForm() {
     setError(null)
 
     const data = getValues()
+    // Мини-валидация на уровне submit (подстраховка)
     if (!data.firstName || !data.lastName || !data.phone || !data.city || !data.address) {
       setError('Будь ласка, заповніть усі обовʼязкові поля.')
       return
@@ -65,8 +83,12 @@ export default function CheckoutForm() {
 
     const payload = {
       kind: 'order' as const,
-      customer: { firstName: data.firstName, lastName: data.lastName, phone: data.phone },
-      delivery: { city: data.city, address: data.address },
+      customer: {
+        firstName: data.firstName.trim(),
+        lastName: data.lastName.trim(),
+        phone: normalizePhone(data.phone)
+      },
+      delivery: { city: data.city.trim(), address: data.address.trim() },
       items: items.map(it => ({
         title: it.title,
         label: it.label,
@@ -75,7 +97,7 @@ export default function CheckoutForm() {
       })),
       total,
       sourceUrl: typeof window !== 'undefined' ? `${window.location.origin}/cart` : undefined,
-      company: hpRef.current?.value || ''
+      company: hpRef.current?.value || '' // honeypot
     }
 
     try {
@@ -84,8 +106,13 @@ export default function CheckoutForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
       })
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`)
+      }
+
       const json = await res.json().catch(() => ({}))
-      if (!res.ok || json?.ok === false) throw new Error(json?.error || `HTTP ${res.status}`)
+      if (json?.ok === false) throw new Error(json?.error || 'Помилка сервера')
 
       setSuccess(true)
     } catch (e: any) {
@@ -102,6 +129,7 @@ export default function CheckoutForm() {
         id="checkout"
         component="form"
         onSubmit={handleSubmit(onSubmit)}
+        noValidate
         sx={{
           mt: 2,
           borderRadius: 4,
@@ -110,6 +138,7 @@ export default function CheckoutForm() {
           p: { xs: 2, md: 3 }
         }}
       >
+        {/* Honeypot (скрытое поле) */}
         <input
           ref={hpRef}
           name="company"

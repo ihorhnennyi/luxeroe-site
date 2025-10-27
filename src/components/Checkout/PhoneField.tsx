@@ -36,8 +36,11 @@ export default function PhoneField({ control, name }: Props) {
       name={name}
       rules={{
         required: 'Обовʼязково',
-        validate: (v: string) =>
-          /^\+380 \d{2} \d{3} \d{2} \d{2}$/.test(v || '') || 'Перевірте формат телефону'
+
+        validate: (v: string) => {
+          const digits = (v || '').replace(/[^\d]/g, '')
+          return (digits.length === 12 && digits.startsWith('380')) || 'Перевірте формат телефону'
+        }
       }}
       render={({ field, fieldState }) => (
         <TextField
@@ -49,6 +52,8 @@ export default function PhoneField({ control, name }: Props) {
           error={!!fieldState.error}
           helperText={fieldState.error?.message}
           InputProps={{ inputComponent: PhoneMask as any }}
+          inputMode="tel"
+          autoComplete="tel"
         />
       )}
     />
