@@ -43,17 +43,32 @@ export default function MobileMenu({ open, onClose }: Props) {
       anchor="left"
       open={open}
       onClose={onClose}
+      ModalProps={{ keepMounted: true }}
       PaperProps={{
         sx: {
           width: '100%',
           maxWidth: '100%',
-          height: '100%',
-          background: 'linear-gradient(180deg, #FFF6EB 0%, #FFF2E1 100%)',
-          display: 'flex'
+          // 🔑 на весь экран мобильного вьюпорта
+          height: '100dvh',
+          minHeight: '100vh',
+          // колонка и управление прокруткой
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          background: 'linear-gradient(180deg, #FFF6EB 0%, #FFF2E1 100%)'
         }
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 2 }}>
+      {/* Header */}
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          p: 2,
+          flex: '0 0 auto'
+        }}
+      >
         <Stack direction="row" spacing={1.2} alignItems="center">
           <Box component="img" src="/logo.svg" alt="LuxeRoe" sx={{ width: 28, height: 28 }} />
           <Typography variant="h6" fontWeight={900} sx={{ color: BRAND_TEXT }}>
@@ -63,11 +78,7 @@ export default function MobileMenu({ open, onClose }: Props) {
         <IconButton
           onClick={onClose}
           aria-label="close"
-          sx={{
-            color: BRAND_TEXT,
-            bgcolor: 'transparent',
-            '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' }
-          }}
+          sx={{ color: BRAND_TEXT, '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' } }}
         >
           <CloseIcon />
         </IconButton>
@@ -75,7 +86,8 @@ export default function MobileMenu({ open, onClose }: Props) {
 
       <Divider sx={{ borderColor: 'rgba(210,170,130,0.25)' }} />
 
-      <Box sx={{ flex: 1, overflowY: 'auto', p: 2 }}>
+      {/* Scrollable content */}
+      <Box sx={{ flex: '1 1 auto', overflowY: 'auto', p: 2 }}>
         <List>
           {MAIN_MENU.map(it => (
             <ListItemButton
@@ -117,10 +129,7 @@ export default function MobileMenu({ open, onClose }: Props) {
             color: ACCENT_GREEN,
             border: '1px solid rgba(15,106,60,0.30)',
             boxShadow: 'none',
-            '&:hover': {
-              bgcolor: '#E1F0E8',
-              borderColor: 'rgba(15,106,60,0.45)'
-            }
+            '&:hover': { bgcolor: '#E1F0E8', borderColor: 'rgba(15,106,60,0.45)' }
           }}
         >
           Подзвонити: +380939858552
@@ -129,7 +138,14 @@ export default function MobileMenu({ open, onClose }: Props) {
 
       <Divider sx={{ borderColor: 'rgba(210,170,130,0.25)' }} />
 
-      <Box sx={{ p: 2 }}>
+      {/* Footer with safe-area padding */}
+      <Box
+        sx={{
+          p: 2,
+          pb: 'calc(16px + env(safe-area-inset-bottom))',
+          flex: '0 0 auto'
+        }}
+      >
         <Typography variant="body2" sx={{ color: BRAND_TEXT, opacity: 0.7, mb: 1 }}>
           Ми в соцмережах
         </Typography>
@@ -142,10 +158,7 @@ export default function MobileMenu({ open, onClose }: Props) {
               target="_blank"
               rel="noopener"
               aria-label={s.label}
-              sx={{
-                color: BRAND_TEXT,
-                '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' }
-              }}
+              sx={{ color: BRAND_TEXT, '&:hover': { bgcolor: 'rgba(0,0,0,0.06)' } }}
             >
               {iconFor(s.icon)}
             </IconButton>
