@@ -23,14 +23,14 @@ const SOCIAL: InstaData = {
     {
       id: 'p1',
       embed: `
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/XXXXXXXXX/"
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DIGzcdkIKdx/?igsh=MXZwdXZmeDc2N3Vubw=="
   data-instgrm-version="14" style="background:#FFF;border:0;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.18);margin:0;max-width:540px;width:100%;"></blockquote>
 `
     },
     {
       id: 'p2',
       embed: `
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/YYYYYYYYY/"
+<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DLb35wQtNhF/?igsh=MW8wcWM1cHNid2ljZw=="
   data-instgrm-version="14" style="background:#FFF;border:0;border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.18);margin:0;max-width:540px;width:100%;"></blockquote>
 `
     }
