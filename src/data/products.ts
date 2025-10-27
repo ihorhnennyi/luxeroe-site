@@ -1,0 +1,133 @@
+import type { Product } from '@/types/product'
+
+export const products: Product[] = [
+  {
+    id: '1',
+    slug: 'ikra-gorbushi',
+    title: 'Ікра горбуші',
+    category: 'red',
+    image: '/ikra/gorbush.webp',
+    short: 'Класичний смак, чистий післясмак.',
+    highlights: ['Свіжа партія', '3–5 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 500, oldPrice: 900, inStock: true }],
+    badge: 'sale',
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '3–5 мм в діаметрі',
+      color: 'Яскраво-червоний',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '2',
+    slug: 'ikra-schuki',
+    title: 'Ікра щуки',
+    category: 'special',
+    image: '/ikra/shuka.webp',
+    short: 'Делікатний смак, бурштиновий колір.',
+    highlights: ['2–3 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    badge: 'sale',
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '2–3 мм в діаметрі',
+      color: 'Світлий бурштин',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '3',
+    slug: 'ikra-goltsya',
+    title: 'Ікра гольця',
+    category: 'red',
+    image: '/ikra/golets.webp',
+    short: 'Ніжна, світло-жовтогаряча.',
+    highlights: ['≈3 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '≈3 мм',
+      color: 'Світло-жовтогарячий',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '4',
+    slug: 'ikra-keti',
+    title: 'Ікра кети',
+    category: 'red',
+    image: '/ikra/keta.webp',
+    short: 'Великі ікринки 5–7 мм.',
+    highlights: ['5–7 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '5–7 мм в діаметрі',
+      color: 'Яскраво-помаранчевий',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '5',
+    slug: 'ikra-lososya',
+    title: 'Ікра лосося',
+    category: 'red',
+    image: '/ikra/losos.webp',
+    short: 'Насичений темно-червоний.',
+    highlights: ['4–8 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '4–8 мм в діаметрі',
+      color: 'Темно-червоний',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '6',
+    slug: 'ikra-keti-premium',
+    title: 'Ікра кети Premium',
+    category: 'red',
+    image: '/ikra/keta.webp',
+    short: 'Покращений відбір.',
+    highlights: ['5–7 мм', 'Premium'],
+    weights: [{ label: '500 г', grams: 500, price: 649, oldPrice: 1100, inStock: true }],
+    badge: 'new',
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '5–7 мм в діаметрі',
+      color: 'Яскраво-помаранчевий',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  },
+  {
+    id: '7',
+    slug: 'ikra-veslonosa',
+    title: 'Ікра веслоноса (чорна)',
+    category: 'black',
+    image: '/ikra/veslonos.webp',
+    short: 'Доступна альтернатива чорній ікрі.',
+    highlights: ['≈2.2 мм', 'Скляна банка'],
+    weights: [{ label: '500 г', grams: 500, price: 699, oldPrice: 1200, inStock: true }],
+    specs: {
+      consistency: 'Суха, не більше 6% рідини',
+      size: '≈2.2 мм',
+      color: 'Чорний',
+      container: 'Скляна банка',
+      storage: 'до +5',
+      shelfLife: '4 місяці • 2 тижні після відкриття'
+    }
+  }
+]
