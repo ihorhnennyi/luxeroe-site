@@ -27,7 +27,7 @@ export const PROMOS: Promo[] = [
     title: 'Більше ікри — більше радості',
     subtitle: 'Три банки одним кліком — для гостей, ролів і свят.',
     bullets: ['Вигідний сет', 'Швидке замовлення', 'Готово до подачі'],
-    image: '/promos/3.webp',
+    image: '/promos/3.1.JPG',
     badge: { label: 'За 3 банки', price: '1 098 грн' },
     cta: { text: 'Замовити сет 2+1', href: '/#catalog' }
   },
