@@ -1,15 +1,15 @@
-import { Bullets, CTAButton, PriceBadge } from '@/components/atoms'
-import type { Promo } from '@/data/promos'
-import { Box, Container, Typography } from '@mui/material'
+import { Bullets, CTAButton, PriceBadge } from '@/components/atoms';
+import type { Promo } from '@/data/promos';
+import { Box, Container, Typography } from '@mui/material';
 
-const BRAND_TEXT = '#2E3D2F'
-const MUTED_TEXT = '#6B5E55'
+const BRAND_TEXT = '#2E3D2F';
+const MUTED_TEXT = '#6B5E55';
 
-const TITLE_MIN_H = { xs: 84, md: 132 }
-const SUBTITLE_MIN_H = { xs: 36, md: 56 }
-const BULLETS_MIN_H = { xs: 64, md: 80 }
+const TITLE_MIN_H = { xs: 84, md: 132 };
+const SUBTITLE_MIN_H = { xs: 36, md: 56 };
+const BULLETS_MIN_H = { xs: 64, md: 80 };
 
-type SlideProps = { p: Promo; onAddPromo?: () => void }
+type SlideProps = { p: Promo; onAddPromo?: () => void };
 
 export default function PromoSlide({ p, onAddPromo }: SlideProps) {
   return (
@@ -22,14 +22,14 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
           flexDirection: { xs: 'column-reverse', md: 'row' },
           alignItems: { xs: 'stretch', md: 'center' },
           justifyContent: { md: 'space-between' },
-          gap: { xs: 3, md: 6 }
+          gap: { xs: 3, md: 6 },
         }}
       >
         <Box
           sx={{
             flex: { xs: '1 1 auto', md: '0 0 560px' },
             maxWidth: { xs: '100%', md: 560 },
-            minHeight: { xs: 300, md: 380 }
+            minHeight: { xs: 300, md: 380 },
           }}
         >
           {p.eyebrow && (
@@ -39,7 +39,7 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
                 letterSpacing: 2,
                 fontWeight: 900,
                 color: '#0F6A3C',
-                fontSize: { xs: 12, md: 14 }
+                fontSize: { xs: 12, md: 14 },
               }}
             >
               {p.eyebrow}
@@ -54,7 +54,7 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
                 fontSize: { xs: 32, md: 56 },
                 fontWeight: 900,
                 lineHeight: { xs: 1.12, md: 1.08 },
-                mb: { xs: 0.5, md: 1.25 }
+                mb: { xs: 0.5, md: 1.25 },
               }}
             >
               {p.title}
@@ -67,7 +67,7 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
                 sx={{
                   color: MUTED_TEXT,
                   fontSize: { xs: 15, md: 16 },
-                  lineHeight: { xs: 1.45, md: 1.6 }
+                  lineHeight: { xs: 1.45, md: 1.6 },
                 }}
               >
                 {p.subtitle}
@@ -84,8 +84,8 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
               text={p.cta.text}
               href={p.cta.href}
               onClick={(e: any) => {
-                e.preventDefault()
-                onAddPromo?.()
+                e.preventDefault();
+                onAddPromo?.();
               }}
               sx={{ width: { xs: '100%', md: 'auto' } }}
             />
@@ -102,7 +102,7 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
             overflow: 'hidden',
             boxShadow: '0 30px 80px rgba(0,0,0,.2)',
             background: '#EDE8E2',
-            aspectRatio: '5 / 4'
+            aspectRatio: '5 / 4',
           }}
         >
           <Box
@@ -110,11 +110,16 @@ export default function PromoSlide({ p, onAddPromo }: SlideProps) {
             src={p.image}
             alt={p.title}
             loading="eager"
-            sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            sx={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+            }}
           />
           {p.badge && <PriceBadge label={p.badge.label} price={p.badge.price} />}
         </Box>
       </Box>
     </Container>
-  )
+  );
 }

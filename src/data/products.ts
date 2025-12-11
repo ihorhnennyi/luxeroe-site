@@ -1,4 +1,4 @@
-import type { Product } from '@/types/product'
+import type { Product } from '@/types/product';
 
 export const products: Product[] = [
   {
@@ -6,7 +6,7 @@ export const products: Product[] = [
     slug: 'ikra-gorbushi',
     title: 'Ікра горбуші',
     category: 'red',
-    image: '/ikra/new/gorbush.JPG',
+    image: '/ikra/gorbush.JPG',
     short: 'Класичний смак, чистий післясмак.',
     highlights: ['Свіжа партія', '3–5 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 500, oldPrice: 900, inStock: true }],
@@ -17,15 +17,15 @@ export const products: Product[] = [
       color: 'Яскраво-червоний',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '2',
     slug: 'ikra-keti',
     title: 'Ікра кети',
     category: 'red',
-    image: '/ikra/new/keta.JPG',
+    image: '/ikra/keta.JPG',
     short: 'Великі ікринки 5–7 мм.',
     highlights: ['5–7 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
@@ -35,15 +35,15 @@ export const products: Product[] = [
       color: 'Яскраво-помаранчевий',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '3',
     slug: 'ikra-lososya',
     title: 'Ікра лосося',
     category: 'red',
-    image: '/ikra/new/losos.JPG',
+    image: '/ikra/losos.JPG',
     short: 'Насичений темно-червоний.',
     highlights: ['4–8 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
@@ -53,15 +53,15 @@ export const products: Product[] = [
       color: 'Темно-червоний',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '4',
     slug: 'ikra-keti-premium',
     title: 'Ікра кети Premium',
     category: 'red',
-    image: '/ikra/new/keta_prem.JPG',
+    image: '/ikra/ketaprem.JPG',
     short: 'Покращений відбір.',
     highlights: ['5–7 мм', 'Premium'],
     weights: [{ label: '500 г', grams: 500, price: 649, oldPrice: 1100, inStock: true }],
@@ -72,15 +72,15 @@ export const products: Product[] = [
       color: 'Яскраво-помаранчевий',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '5',
     slug: 'ikra-veslonosa',
     title: 'Ікра веслоноса (чорна)',
     category: 'black',
-    image: '/ikra/new/veslonos.JPG',
+    image: '/ikra/veslonos.JPG',
     short: 'Доступна альтернатива чорній ікрі.',
     highlights: ['≈2.2 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 699, oldPrice: 1200, inStock: true }],
@@ -90,15 +90,15 @@ export const products: Product[] = [
       color: 'Чорний',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '6',
     slug: 'ikra-schuki',
     title: 'Ікра щуки',
     category: 'special',
-    image: '/ikra/new/shuka.JPG',
+    image: '/ikra/shuka.JPG',
     short: 'Делікатний смак, бурштиновий колір.',
     highlights: ['2–3 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
@@ -109,15 +109,15 @@ export const products: Product[] = [
       color: 'Світлий бурштин',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
   },
   {
     id: '7',
     slug: 'ikra-goltsya',
     title: 'Ікра гольця',
     category: 'red',
-    image: '/ikra/new/golets.JPG',
+    image: '/ikra/golets.JPG',
     short: 'Ніжна, світло-жовтогаряча.',
     highlights: ['≈3 мм', 'Скляна банка'],
     weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
@@ -127,7 +127,7 @@ export const products: Product[] = [
       color: 'Світло-жовтогарячий',
       container: 'Скляна банка',
       storage: 'до +5',
-      shelfLife: '4 місяці • 2 тижні після відкриття'
-    }
-  }
-]
+      shelfLife: '4 місяці • 2 тижні після відкриття',
+    },
+  },
+];
