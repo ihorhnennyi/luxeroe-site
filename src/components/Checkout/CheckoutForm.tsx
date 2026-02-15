@@ -2,7 +2,7 @@
 import { useCart } from '@/store/cart'
 import { normalizePrice } from '@/utils/money'
 import { Box, Stack, ThemeProvider, Typography } from '@mui/material'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import ActionsBar from './ActionsBar'
 import CustomerFields from './CustomerFields'
