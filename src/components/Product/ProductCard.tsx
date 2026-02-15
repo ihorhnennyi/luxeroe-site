@@ -76,7 +76,17 @@ export default function ProductCard({ p }: { p: Product }) {
             src={p.image}
             alt={p.title}
             loading="lazy"
-            sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            sx={{
+              width: p.imageScale ? `${p.imageScale * 100}%` : '100%',
+              height: p.imageScale ? `${p.imageScale * 100}%` : '100%',
+              marginLeft: p.imageScale ? `${(p.imageScale - 1) * -50}%` : 0,
+              marginTop: p.imageScale ? `${(p.imageScale - 1) * -50}%` : 0,
+              transform: p.imageScale ? `scale(${1 / p.imageScale})` : undefined,
+              transformOrigin: 'center center',
+              objectFit: 'cover',
+              objectPosition: p.imagePosition ?? 'center center',
+              display: 'block'
+            }}
           />
           {!!p.badge && (
             <Chip
