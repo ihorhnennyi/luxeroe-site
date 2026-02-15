@@ -75,7 +75,7 @@ export const PROMOS: Promo[] = [
     eyebrow: 'ШВИДКА АКЦІЯ',
     title: '3 банки за 1 999 грн',
     subtitle: 'Будь-які 3 Standard: горбуша, кета, лосось, щука, голець.',
-    image: '/promos/3.jpg',
+    image: '/promos/3.1.jpg',
     badge: { label: 'За 3 банки', price: '1 999 грн' },
     cta: { text: 'Замовити', href: '/#catalog' },
   },
