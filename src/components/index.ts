@@ -1,4 +1,6 @@
+export { default as CapsulatedCaviar } from './CapsulatedCaviar/CapsulatedCaviar'
 export { default as CartHeader } from './Checkout/CartHeader'
+export { default as FraudWarning } from './FraudWarning/FraudWarning'
 export { default as CheckoutForm } from './Checkout/CheckoutForm'
 export { default as Consultation } from './Consultation/Consultation'
 export { default as FloatingActions } from './FloatingActions/FloatingActions'

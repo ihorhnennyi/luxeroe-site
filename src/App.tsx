@@ -1,6 +1,8 @@
 import {
+  CapsulatedCaviar,
   Consultation,
   FloatingActions,
+  FraudWarning,
   Footer,
   Header,
   HowTo,
@@ -15,9 +17,34 @@ import SmoothHashScroll from '@/components/_internals/SmoothHashScroll'
 import CartPage from '@/pages/cart'
 import { useCartCount } from '@/store/cart'
 import { Box } from '@mui/material'
+import { useEffect } from 'react'
 import { Route, Routes, useNavigate } from 'react-router-dom'
 
 const HEADER_OFFSET = 72
+
+function useScrollToTopOnLoad() {
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.history.scrollRestoration = 'manual'
+    const goTop = () => window.scrollTo(0, 0)
+    if (!window.location.hash) {
+      goTop()
+      const t1 = setTimeout(goTop, 0)
+      const t2 = setTimeout(goTop, 200)
+      const t3 = setTimeout(goTop, 500)
+      const t4 = setTimeout(goTop, 1000)
+      const onLoad = () => goTop()
+      window.addEventListener('load', onLoad)
+      return () => {
+        clearTimeout(t1)
+        clearTimeout(t2)
+        clearTimeout(t3)
+        clearTimeout(t4)
+        window.removeEventListener('load', onLoad)
+      }
+    }
+  }, [])
+}
 
 function Home() {
   const count = useCartCount()
@@ -39,9 +66,13 @@ function Home() {
         <PromoHero />
       </Box>
 
+      <FraudWarning />
+
       <Box id="catalog">
         <Product />
       </Box>
+
+      <CapsulatedCaviar />
 
       <Box id="reviews">
         <Reviews />
@@ -73,6 +104,8 @@ function Home() {
 }
 
 export default function App() {
+  useScrollToTopOnLoad()
+
   return (
     <>
       {/* Плавный скролл для переходов по /#hash (учёт высоты шапки) */}

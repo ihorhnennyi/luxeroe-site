@@ -101,6 +101,16 @@
   </head>
 
   <body>
+    <script>
+      try {
+        if (window.history && window.history.scrollRestoration !== undefined) {
+          window.history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+      } catch (e) {}
+    </script>
     <div id="root"></div>
 
     <!-- Meta Pixel noscript (в body, чтобы валидно для парсера) -->

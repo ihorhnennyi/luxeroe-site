@@ -49,7 +49,7 @@ export default function PromoHero() {
   }
 
   return (
-    <Box sx={{ position: 'relative', overflow: 'hidden', minHeight: { xs: 640, md: 740 } }}>
+    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
       <Box sx={{ position: 'relative' }}>
         {PROMOS.map((p, i) => {
           const isActive = i === index

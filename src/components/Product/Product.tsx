@@ -7,7 +7,8 @@ export default function Product() {
     <Box
       component="section"
       sx={{
-        py: { xs: 4, md: 2 }
+        pt: { xs: 4, md: 2 },
+        pb: 0,
       }}
     >
       <Container maxWidth="lg" disableGutters sx={{ px: { xs: 2, md: 3 } }}>

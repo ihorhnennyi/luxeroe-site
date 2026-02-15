@@ -7,7 +7,10 @@ export default function SmoothHashScroll({ offset = 72 }: { offset?: number }) {
   useEffect(() => {
     if (pathname !== '/') return
     const id = hash ? decodeURIComponent(hash.slice(1)) : ''
-    if (!id) return
+    if (!id) {
+      window.scrollTo(0, 0)
+      return
+    }
     const el = document.getElementById(id)
     if (!el) return
     const y = el.getBoundingClientRect().top + window.scrollY - offset
