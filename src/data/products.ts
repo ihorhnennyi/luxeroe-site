@@ -9,7 +9,7 @@ export const products: Product[] = [
     image: '/ikra/gorbush.jpg',
     short: 'Класичний смак, чистий післясмак.',
     highlights: ['Свіжа партія', '3–5 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 500, oldPrice: 900, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 649, oldPrice: 900, inStock: true }],
     badge: 'sale',
     specs: {
       consistency: 'Суха, не більше 6% рідини',
@@ -29,7 +29,7 @@ export const products: Product[] = [
     imagePosition: 'center 65%',
     short: 'Великі ікринки 5–7 мм.',
     highlights: ['5–7 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 749, oldPrice: 1000, inStock: true }],
     specs: {
       consistency: 'Суха, не більше 6% рідини',
       size: '5–7 мм в діаметрі',
@@ -47,7 +47,7 @@ export const products: Product[] = [
     image: '/ikra/losos.jpg',
     short: 'Насичений темно-червоний.',
     highlights: ['4–8 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 599, oldPrice: 1000, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 749, oldPrice: 1000, inStock: true }],
     specs: {
       consistency: 'Суха, не більше 6% рідини',
       size: '4–8 мм в діаметрі',
@@ -65,7 +65,7 @@ export const products: Product[] = [
     image: '/ikra/ketaprem.jpg',
     short: 'Покращений відбір.',
     highlights: ['5–7 мм', 'Premium'],
-    weights: [{ label: '500 г', grams: 500, price: 649, oldPrice: 1100, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 899, oldPrice: 1100, inStock: true }],
     badge: 'new',
     specs: {
       consistency: 'Суха, не більше 6% рідини',
@@ -85,7 +85,7 @@ export const products: Product[] = [
     imagePosition: 'center 65%',
     short: 'Доступна альтернатива чорній ікрі.',
     highlights: ['≈2.2 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 699, oldPrice: 1200, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 899, oldPrice: 1200, inStock: true }],
     specs: {
       consistency: 'Суха, не більше 6% рідини',
       size: '≈2.2 мм',
@@ -103,7 +103,7 @@ export const products: Product[] = [
     image: '/ikra/shuka.jpg',
     short: 'Делікатний смак, бурштиновий колір.',
     highlights: ['2–3 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 679, oldPrice: 900, inStock: true }],
     badge: 'sale',
     specs: {
       consistency: 'Суха, не більше 6% рідини',
@@ -123,7 +123,7 @@ export const products: Product[] = [
     imagePosition: 'center 65%',
     short: 'Ніжна, світло-жовтогаряча.',
     highlights: ['≈3 мм', 'Скляна банка'],
-    weights: [{ label: '500 г', grams: 500, price: 549, oldPrice: 900, inStock: true }],
+    weights: [{ label: '500 г', grams: 500, price: 679, oldPrice: 900, inStock: true }],
     specs: {
       consistency: 'Суха, не більше 6% рідини',
       size: '≈3 мм',
