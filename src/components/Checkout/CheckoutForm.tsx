@@ -59,12 +59,9 @@ export default function CheckoutForm() {
   useEffect(() => {
     if (!success) return
     window.scrollTo({ top: 0, behavior: 'smooth' })
-    const t = setTimeout(() => {
-      navigate('/')
-      setTimeout(() => clear(), 0)
-    }, 10000)
+    const t = setTimeout(() => navigate('/'), 10000)
     return () => clearTimeout(t)
-  }, [success, navigate, clear])
+  }, [success, navigate])
 
   const blurAllInputs = () => {
     // Скрыть клавиатуру на мобилках
@@ -118,6 +115,7 @@ export default function CheckoutForm() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
       const json = await res.json().catch(() => ({}))
       if (json?.ok === false) throw new Error(json?.error || 'Помилка сервера')
+      clear()
       setSuccess(true)
     } catch (e: any) {
       console.error(e)
