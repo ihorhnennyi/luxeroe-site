@@ -1,10 +1,11 @@
-import { CartEmpty, CartHeader, CheckoutForm, Footer, Header, TopTicker } from '@/components'
-import { useCartCount, useCartHydrated } from '@/store/cart'
+import { CartEmpty, CartHeader, CheckoutForm, Footer, Header, OrderSuccess, TopTicker } from '@/components'
+import { useCartCount, useCartHydrated, useCartOrderJustSubmitted } from '@/store/cart'
 import { Box, Container } from '@mui/material'
 
 export default function CartPage() {
   const hydrated = useCartHydrated()
   const count = useCartCount()
+  const orderJustSubmitted = useCartOrderJustSubmitted()
 
   return (
     <Box
@@ -24,7 +25,9 @@ export default function CartPage() {
         disableGutters
         sx={{ px: { xs: 2, md: 3 }, py: { xs: 3, md: 4 } }}
       >
-        {!hydrated ? null : count === 0 ? (
+        {!hydrated ? null : orderJustSubmitted ? (
+          <OrderSuccess />
+        ) : count === 0 ? (
           <CartEmpty />
         ) : (
           <>

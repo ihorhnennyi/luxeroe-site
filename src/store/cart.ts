@@ -14,7 +14,8 @@ export type CartItem = {
 
 type State = {
   items: CartItem[]
-
+  /** Показати екран «Дякуємо за замовлення» замість порожнього кошика */
+  orderJustSubmitted: boolean
   _hydrated: boolean
 }
 
@@ -24,6 +25,7 @@ type Actions = {
   dec: (id: string) => void
   remove: (id: string) => void
   clear: () => void
+  setOrderJustSubmitted: (v: boolean) => void
 
   _setHydrated: (v: boolean) => void
 }
@@ -36,9 +38,11 @@ export const useCart = create<State & Actions>()(
   persist(
     (set, get) => ({
       items: [],
+      orderJustSubmitted: false,
       _hydrated: false,
 
       _setHydrated: v => set({ _hydrated: v }),
+      setOrderJustSubmitted: v => set({ orderJustSubmitted: v }),
 
       add: ({ product, label, price, qty = 1 }) => {
         const items = get().items.slice()
@@ -105,3 +109,4 @@ export const useCart = create<State & Actions>()(
 // селекторы
 export const useCartCount = () => useCart(s => s.items.reduce((sum, it) => sum + it.qty, 0))
 export const useCartHydrated = () => useCart(s => s._hydrated)
+export const useCartOrderJustSubmitted = () => useCart(s => s.orderJustSubmitted)

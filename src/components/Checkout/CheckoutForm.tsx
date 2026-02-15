@@ -4,13 +4,10 @@ import { normalizePrice } from '@/utils/money'
 import { Box, Stack, ThemeProvider, Typography } from '@mui/material'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-
 import ActionsBar from './ActionsBar'
 import CustomerFields from './CustomerFields'
 import DeliveryFields from './DeliveryFields'
 import NoteField from './NoteField'
-import OrderSuccess from './OrderSuccess'
 import OrderSummary from './OrderSummary'
 import PaymentNotice from './PaymentNotice'
 
@@ -25,11 +22,9 @@ const normalizePhone = (v: string) => {
 }
 
 export default function CheckoutForm() {
-  const { items, clear } = useCart()
-  const navigate = useNavigate()
+  const { items, clear, setOrderJustSubmitted } = useCart()
 
   const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
 
   const {
     handleSubmit,
@@ -56,12 +51,6 @@ export default function CheckoutForm() {
     [items]
   )
 
-  useEffect(() => {
-    if (!success) return
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    const t = setTimeout(() => navigate('/'), 10000)
-    return () => clearTimeout(t)
-  }, [success, navigate])
 
   const blurAllInputs = () => {
     // Скрыть клавиатуру на мобилках
@@ -116,14 +105,12 @@ export default function CheckoutForm() {
       const json = await res.json().catch(() => ({}))
       if (json?.ok === false) throw new Error(json?.error || 'Помилка сервера')
       clear()
-      setSuccess(true)
+      setOrderJustSubmitted(true)
     } catch (e: any) {
       console.error(e)
       setError(e?.message || 'Не вдалося відправити замовлення. Спробуйте ще раз.')
     }
   }
-
-  if (success) return <OrderSuccess />
 
   return (
     <ThemeProvider theme={lightFormTheme}>
