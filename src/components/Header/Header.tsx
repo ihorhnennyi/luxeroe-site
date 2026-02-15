@@ -65,7 +65,13 @@ export default function Header() {
       >
         <Container maxWidth="lg" disableGutters>
           <Toolbar
-            sx={{ minHeight: HEADER_OFFSET, px: 2, color: BRAND_TEXT, position: 'relative' }}
+            sx={{
+              minHeight: HEADER_OFFSET,
+              px: 2,
+              color: BRAND_TEXT,
+              position: 'relative',
+              alignItems: 'center'
+            }}
           >
             <Link
               href="/"
@@ -73,7 +79,12 @@ export default function Header() {
               color="inherit"
               sx={{ display: 'inline-flex', alignItems: 'center', gap: 1.2 }}
             >
-              <Box component="img" src="/logo.svg" alt="LuxeRoe" sx={{ width: 28, height: 28 }} />
+              <Box
+                component="img"
+                src="/logo.jpg"
+                alt="LuxeRoe"
+                sx={{ height: 56, width: 'auto', maxWidth: 200, objectFit: 'contain' }}
+              />
               <Typography variant="h6" fontWeight={900} color="inherit">
                 LuxeRoe
               </Typography>
@@ -83,10 +94,19 @@ export default function Header() {
               component="nav"
               direction="row"
               spacing={3}
+              alignItems="center"
               sx={{
                 mx: '200px',
                 display: { xs: 'none', md: 'flex' },
-                '& a': { color: BRAND_TEXT, fontWeight: 700, textDecoration: 'none' },
+                '& a': {
+                  color: BRAND_TEXT,
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap'
+                },
                 '& a:hover': { opacity: 0.85 }
               }}
             >
@@ -110,14 +130,27 @@ export default function Header() {
               })}
             </Stack>
 
-            <Stack direction="row" spacing={0.5} alignItems="center" sx={{ ml: 'auto' }}>
+            <Stack
+              direction="row"
+              spacing={0.5}
+              alignItems="center"
+              sx={{
+                ml: 'auto',
+                alignSelf: 'center',
+                '& .MuiIconButton-root': {
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }
+              }}
+            >
               <IconButton component="a" href="tel:+380939858552" aria-label="call" color="inherit">
-                <PhoneIcon sx={{ color: '#C6744B' }} />
+                <PhoneIcon sx={{ color: '#C6744B', display: 'block' }} />
               </IconButton>
 
               <IconButton aria-label="cart" color="inherit" component={RouterLink} to="/cart">
-                <Box sx={{ position: 'relative' }}>
-                  <ShoppingCartIcon />
+                <Box sx={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <ShoppingCartIcon sx={{ display: 'block' }} />
                   {safeCount > 0 && (
                     <Box
                       sx={{
